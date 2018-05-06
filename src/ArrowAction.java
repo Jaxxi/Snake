@@ -23,5 +23,4 @@ public class ArrowAction extends AbstractAction {
             snake.spacePressed();
         }
     }
-
 }

@@ -26,7 +26,7 @@ public class Snake extends JPanel implements ActionListener {
     private Boolean isAlive = false;
     private Timer timer;
     private Board board;
-    private Buttons buttons;
+    private Controls Controls;
     private JFrame frame;
 
     private Integer score=0;
@@ -41,9 +41,9 @@ public class Snake extends JPanel implements ActionListener {
     }
 
     public void createBoard() {
-        frame = new JFrame("Typical Snake Game");
         snakeLocation = new ArrayList<>();
         snakeLocation.add(new Point(-100,-100));
+        frame = new JFrame("Snake");
         food=new Point(-100,-100);
         board = new Board();
         sizeWidth=board.getSizeWidth();
@@ -52,9 +52,9 @@ public class Snake extends JPanel implements ActionListener {
         offsetWidth=board.getOffsetWidth();
         scale=board.getScale();
 
-        buttons = new Buttons();
+        Controls = new Controls();
         frame.getContentPane().add(BorderLayout.CENTER, board);
-        frame.getContentPane().add(BorderLayout.SOUTH, buttons);
+        frame.getContentPane().add(BorderLayout.SOUTH, Controls);
         frame.setPreferredSize(new Dimension(sizeWidth + 2 * offsetWidth, sizeHeight + 2 * offsetHeight + 50));
 
         frame.setResizable(false);
@@ -64,9 +64,7 @@ public class Snake extends JPanel implements ActionListener {
         frame.setFocusable(true);
         frame.requestFocus();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
-
 
     public void startGame() {
         delay=100+(5-speed)*15;
@@ -86,13 +84,11 @@ public class Snake extends JPanel implements ActionListener {
 
         newFood();
 
-        buttons.blockButtons();
+        Controls.blockButtons();
         isAlive = true;
         isPaused = false;
         timer.start();
     }
-
-
 
     public ArrayList<Point> getSnakeLocation() {
         return snakeLocation;
@@ -130,16 +126,15 @@ public class Snake extends JPanel implements ActionListener {
 
     public void move() {
         if (direction.equals("RIGHT")) {
-            snakeLocation.add(0, new Point(snakeLocation.get(0).x + 10, snakeLocation.get(0).y + 0));
+            snakeLocation.add(0, new Point(snakeLocation.get(0).x + 10, snakeLocation.get(0).y));
         } else if (direction.equals("LEFT")) {
-            snakeLocation.add(0, new Point(snakeLocation.get(0).x - 10, snakeLocation.get(0).y + 0));
+            snakeLocation.add(0, new Point(snakeLocation.get(0).x - 10, snakeLocation.get(0).y));
         } else if (direction.equals("UP")) {
             snakeLocation.add(0, new Point(snakeLocation.get(0).x, snakeLocation.get(0).y - 10));
         } else if (direction.equals("DOWN")) {
             snakeLocation.add(0, new Point(snakeLocation.get(0).x, snakeLocation.get(0).y + 10));
         }
     }
-
 
     public void actionPerformed(ActionEvent arg0) {
         if(!isPaused && isAlive) {
@@ -152,10 +147,8 @@ public class Snake extends JPanel implements ActionListener {
 
         }  else if(!isAlive) {
             timer.stop();
-            buttons.enableButtons();
+            Controls.enableButtons();
         }
-
-
     }
 
     public void newFood() {
@@ -206,11 +199,9 @@ public class Snake extends JPanel implements ActionListener {
             }
         }
 
-
         if (snakeLocation.get(0).x==offsetWidth-scale || snakeLocation.get(0).x==sizeWidth+offsetWidth ||snakeLocation.get(0).y==offsetHeight-scale || snakeLocation.get(0).y==sizeHeight+offsetHeight) {
             isAlive = false;
         }
-
 
         if (snakeLocation.get(0).equals(food)) {
             newFood();

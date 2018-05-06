@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-public class Buttons extends JPanel {
+public class Controls extends JPanel {
 
     Snake snake=Snake.getInstance();
     Board board=new Board();
@@ -12,7 +12,7 @@ public class Buttons extends JPanel {
     JButton speedDown;
     JButton speedUp;
 
-    public Buttons(){
+    public Controls(){
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setPreferredSize(new Dimension(board.getSizeWidth()+board.getOffsetWidth(), 20));
 

@@ -3,8 +3,8 @@ import java.awt.*;
 import java.util.ArrayList;
 public class Board extends JPanel {
 
-    private int sizeWidth = 700;
-    private int sizeHeight = 700;
+    private int sizeWidth = 500;
+    private int sizeHeight = 500;
     private int offsetWidth = 30;
     private int offsetHeight = 30;
     private int scale = 10;

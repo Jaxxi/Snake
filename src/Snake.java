@@ -57,7 +57,7 @@ public class Snake extends JPanel implements ActionListener {
         frame.getContentPane().add(BorderLayout.SOUTH, Controls);
         frame.setPreferredSize(new Dimension(sizeWidth + 2 * offsetWidth, sizeHeight + 2 * offsetHeight + 50));
 
-        frame.setResizable(false);
+        //frame.setResizable(false);
         frame.setVisible(true);
         frame.pack();
         frame.setLocationRelativeTo(null);
